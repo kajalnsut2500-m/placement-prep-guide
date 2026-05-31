@@ -1,0 +1,186 @@
+
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; }
+.wrap { padding: 1rem 0; font-family: var(--font-sans); }
+.week-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.wn { padding: 5px 11px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+.wn.active { background: #534AB7; color: #EEEDFE; border-color: #534AB7; font-weight: 500; }
+.wn:hover:not(.active) { color: var(--color-text-primary); background: var(--color-background-primary); }
+.wcard { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; margin-bottom: 1rem; }
+.wcard-head { padding: 12px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.phase-badge { font-size: 11px; padding: 3px 9px; border-radius: 10px; }
+.p1 { background: #EEEDFE; color: #3C3489; }
+.p2 { background: #E1F5EE; color: #085041; }
+.p3 { background: #FAEEDA; color: #633806; }
+.wcard-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.wcard-body { padding: 14px 16px; }
+.step-row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.step-row:last-child { border-bottom: none; padding-bottom: 0; }
+.step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); flex-shrink: 0; margin-top: 1px; }
+.step-content { flex: 1; }
+.step-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+.step-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 5px; }
+.res-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.res-link { font-size: 11px; padding: 2px 8px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); background: var(--color-background-secondary); }
+.res-link:hover { color: var(--color-text-primary); background: var(--color-background-primary); }
+.daily-loop { margin-top: 1rem; }
+.loop-row { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 0.5px solid var(--color-border-tertiary); }
+.loop-pct { font-size: 12px; font-weight: 500; min-width: 38px; color: var(--color-text-secondary); }
+.loop-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+.loop-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.hidden { display: none; }
+</style>
+<h2 class="sr-only">12-week placement prep guide with sources and step-by-step procedure</h2>
+<div class="wrap">
+  <p style="font-size:13px; color:var(--color-text-secondary); margin:0 0 1rem;">Click any week to see the exact steps + resources for that week.</p>
+
+  <div class="week-nav">
+    <span style="font-size:12px; color:var(--color-text-tertiary); align-self:center; margin-right:2px;">Phase 1 →</span>
+    <button class="wn active" onclick="show(1,this)">Wk 1</button>
+    <button class="wn" onclick="show(2,this)">Wk 2</button>
+    <button class="wn" onclick="show(3,this)">Wk 3</button>
+    <button class="wn" onclick="show(4,this)">Wk 4</button>
+    <span style="font-size:12px; color:var(--color-text-tertiary); align-self:center; margin-left:4px; margin-right:2px;">Phase 2 →</span>
+    <button class="wn" onclick="show(5,this)">Wk 5</button>
+    <button class="wn" onclick="show(6,this)">Wk 6</button>
+    <button class="wn" onclick="show(7,this)">Wk 7</button>
+    <button class="wn" onclick="show(8,this)">Wk 8</button>
+    <span style="font-size:12px; color:var(--color-text-tertiary); align-self:center; margin-left:4px; margin-right:2px;">Phase 3 →</span>
+    <button class="wn" onclick="show(9,this)">Wk 9</button>
+    <button class="wn" onclick="show(10,this)">Wk 10</button>
+    <button class="wn" onclick="show(11,this)">Wk 11</button>
+    <button class="wn" onclick="show(12,this)">Wk 12</button>
+    <button class="wn" onclick="show(0,this)" style="margin-left:6px;">Daily loop</button>
+  </div>
+
+  <div id="w1" class="wcard">
+    <div class="wcard-head"><span class="phase-badge p1">Phase 1 — technical</span><span class="wcard-title">Week 1 · Excel from zero</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Watch Chandoo's beginner playlist</div><div class="step-desc">Covers SUM, AVERAGE, IF, and formatting. Don't take notes — just follow along.</div><div class="res-row"><a class="res-link" href="https://www.youtube.com/@chandoo_" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Chandoo YouTube</a><a class="res-link" href="https://www.youtube.com/@AlexTheAnalyst" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Alex the Analyst</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Download a sample dataset and replicate</div><div class="step-desc">Get any sales CSV from Kaggle. Build a Pivot Table, use VLOOKUP and INDEX-MATCH on real data.</div><div class="res-row"><a class="res-link" href="https://www.kaggle.com/datasets" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Kaggle datasets</a></div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Finish with Conditional Formatting + What-If</div><div class="step-desc">These appear frequently in DA and BA assessments. One tutorial each is enough.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w2" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p1">Phase 1 — technical</span><span class="wcard-title">Week 2 · SQL basics</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Complete SQLBolt in full</div><div class="step-desc">18 interactive lessons, runs in browser, no setup needed. Covers SELECT, WHERE, GROUP BY, ORDER BY. Do all 18.</div><div class="res-row"><a class="res-link" href="https://sqlbolt.com" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>SQLBolt</a><a class="res-link" href="https://www.w3schools.com/sql/" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>W3Schools SQL</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Learn all JOIN types</div><div class="step-desc">INNER, LEFT, RIGHT, FULL OUTER — draw Venn diagrams on paper to remember the difference.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Solve 10 easy problems on DataLemur</div><div class="step-desc">Start with the "Easy" tag. Don't look at hints immediately — give each problem 15 minutes first.</div><div class="res-row"><a class="res-link" href="https://datalemur.com" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>DataLemur</a></div></div></div>
+    </div>
+  </div>
+
+  <div id="w3" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p1">Phase 1 — technical</span><span class="wcard-title">Week 3 · SQL advanced + statistics</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Master window functions</div><div class="step-desc">ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE() — these appear in every analyst technical round. Use Mode Analytics SQL tutorial or the DataLemur SQL guide.</div><div class="res-row"><a class="res-link" href="https://datalemur.com/sql-tutorial/sql-window-functions" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Window functions guide</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Subqueries and CTEs</div><div class="step-desc">Practice nested queries and WITH clauses. Solve 5 medium-level problems on LeetCode SQL.</div><div class="res-row"><a class="res-link" href="https://leetcode.com/problemset/database/" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>LeetCode SQL</a></div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Statistics — Khan Academy crash course</div><div class="step-desc">Mean, median, mode, variance, standard deviation, percentiles, basic probability. 3-4 videos per day is enough.</div><div class="res-row"><a class="res-link" href="https://www.khanacademy.org/math/statistics-probability" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Khan Academy</a><a class="res-link" href="https://www.youtube.com/@krishnaik06" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Krish Naik</a></div></div></div>
+    </div>
+  </div>
+
+  <div id="w4" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p1">Phase 1 — technical</span><span class="wcard-title">Week 4 · Python from scratch</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Python syntax in 1 day</div><div class="step-desc">Watch "Python for Beginners in 1 Hour" by Programming with Mosh. Cover variables, loops, functions, error handling — that's all you need at this stage.</div><div class="res-row"><a class="res-link" href="https://www.youtube.com/watch?v=kqtD5dpn9C8" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Mosh — Python 1hr</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Pandas + NumPy (days 2–5)</div><div class="step-desc">freeCodeCamp's "Data Analysis with Python" is the best free resource. Focus on reading CSVs, filtering, groupby, and merging dataframes.</div><div class="res-row"><a class="res-link" href="https://www.youtube.com/watch?v=r-uOLxNrNk8" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>freeCodeCamp — Pandas</a></div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Practice on HackerRank Python</div><div class="step-desc">Complete the 10-day Python challenge. The problems reinforce loops and functions without getting into CS theory.</div><div class="res-row"><a class="res-link" href="https://www.hackerrank.com/domains/python" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>HackerRank Python</a></div></div></div>
+    </div>
+  </div>
+
+  <div id="w5" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p2">Phase 2 — analytical</span><span class="wcard-title">Week 5 · Guesstimates from zero</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Learn the framework first</div><div class="step-desc">Every guesstimate follows: Clarify the question → Break into segments → Estimate each part → Multiply → Sanity check. Watch 2 videos before attempting any problem.</div><div class="res-row"><a class="res-link" href="https://www.youtube.com/@CaseInterviewCracked" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Case Interview Cracked</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Practise India-context estimates</div><div class="step-desc">Examples: "How many smartphones are sold in India daily?" / "Estimate monthly revenue of a Zomato delivery partner." These are the type you'll actually get.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Attempt 2 guesstimates per day, out loud</div><div class="step-desc">Speaking matters more than writing. Record yourself on your phone and replay — you'll spot gaps in logic quickly.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w6" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p2">Phase 2 — analytical</span><span class="wcard-title">Week 6 · Product case studies</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Read The Product Folks teardown decks</div><div class="step-desc">100+ product teardowns covering real apps. Pick 5 apps you actually use and read their teardowns first.</div><div class="res-row"><a class="res-link" href="https://www.theproductfolks.com/product-teardowns" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>The Product Folks</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Study case types from IIM casebooks</div><div class="step-desc">Cover: Improve a product, Design a product, Root cause analysis, KPIs, Favourite product. One type per day.</div><div class="res-row"><a class="res-link" href="https://www.caseinterviewcracked.com" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Case Study Club</a></div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Watch mock PA/PM interviews on YouTube</div><div class="step-desc">Search "Flipkart product analyst mock interview" and "Amazon PM mock interview." See how candidates structure their answers in real time.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w7" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p2">Phase 2 — analytical</span><span class="wcard-title">Week 7 · Business case studies (BA focus)</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Learn the 4 core BA case types</div><div class="step-desc">Profitability Analysis, Market Entry, New Product Launch, Growth Strategy. Understand the framework for each before solving any case.</div><div class="res-row"><a class="res-link" href="https://www.iima.ac.in/placement/resources" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>IIM-A casebook</a><a class="res-link" href="https://iimb.ac.in/placement" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>IIM-B casebook</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Solve 1 case per day, written then verbal</div><div class="step-desc">Write your answer first (structure on paper), then present it out loud as if you're in an interview. Both skills are separately important.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Also cover DTU, FMS, SRCC casebooks</div><div class="step-desc">These are freely available and contain Indian business context which is closer to what NSUT placements will feature.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w8" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p2">Phase 2 — analytical</span><span class="wcard-title">Week 8 · Data visualisation (DA focus)</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Choose Power BI (recommended over Tableau)</div><div class="step-desc">More commonly asked in Indian placements. Follow Alex the Analyst's Power BI beginner bootcamp on YouTube — it's free and very hands-on.</div><div class="res-row"><a class="res-link" href="https://www.youtube.com/@AlexTheAnalyst" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Alex the Analyst — Power BI</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Learn DAX basics + data modeling</div><div class="step-desc">Calculated columns, measures, relationships between tables. These 3 things cover 80% of what you'll need in an assessment.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Build one guided dashboard end-to-end</div><div class="step-desc">Follow a YouTube tutorial for a Sales or HR dashboard. By end of week you should have a publishable file for your resume.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w9" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p3">Phase 3 — portfolio</span><span class="wcard-title">Week 9 · Capstone project</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Pick a messy Kaggle dataset</div><div class="step-desc">Something real: e-commerce orders, IPL match data, hospital data. The messier it is, the better it demonstrates your cleaning skills.</div><div class="res-row"><a class="res-link" href="https://www.kaggle.com/datasets" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i>Kaggle datasets</a></div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Clean + analyse with Python and SQL</div><div class="step-desc">Use Pandas to clean, write SQL queries to answer 3 specific business questions you define upfront. Document everything in a Jupyter Notebook.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Build a Power BI dashboard on top of it</div><div class="step-desc">This single end-to-end project covers Python + SQL + visualisation — and becomes your strongest resume bullet point.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w10" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p3">Phase 3 — portfolio</span><span class="wcard-title">Week 10 · Product teardown deck</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Pick one app you use heavily</div><div class="step-desc">Swiggy, CRED, Zepto, PhonePe — something you genuinely understand as a user. Avoid copying existing teardowns.</div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Structure: user journey → pain points → metrics → fix</div><div class="step-desc">A 5-7 slide deck is ideal. Cover: who the user is, what their goal is, where they drop off, what metric is affected, what your proposed change is.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Add to your resume and LinkedIn</div><div class="step-desc">Upload to Notion or Canva and share the link on LinkedIn. Interviewers genuinely check this before PA/PM rounds.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w11" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p3">Phase 3 — portfolio</span><span class="wcard-title">Week 11 · Mock interview blitz</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Daily mock with a friend — 45 min sessions</div><div class="step-desc">One person is interviewer, one is candidate. Rotate. Cover 1 guesstimate + 1 case study per session. Use a timer — 20 min per case.</div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Watch your weakest case type 3x more</div><div class="step-desc">If market entry cases feel shaky, do 3 market entry cases before moving on. Don't spread time equally — fix the gaps.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Record at least 2 sessions</div><div class="step-desc">Play them back and note filler words, pacing, and whether your structure was actually clear to someone who doesn't know the topic.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w12" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p3">Phase 3 — portfolio</span><span class="wcard-title">Week 12 · Resume + HR prep</span></div>
+    <div class="wcard-body">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><div class="step-title">Rewrite resume with STAR bullets</div><div class="step-desc">Every experience bullet should follow Situation → Task → Action → Result. Quantify wherever possible. Your capstone project gets its own bullet with metrics.</div></div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><div class="step-title">Prepare 5 core HR answers</div><div class="step-desc">Tell me about yourself / Why this role? / A time you solved a problem with data / Your biggest weakness / Where do you see yourself in 3 years.</div></div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><div class="step-title">Re-read every case and guesstimate you got wrong</div><div class="step-desc">The day before any interview, re-read your "mistakes notebook" — not new material. Revising errors is more valuable than learning new content at this stage.</div></div></div>
+    </div>
+  </div>
+
+  <div id="w0" class="wcard hidden">
+    <div class="wcard-head"><span class="phase-badge p1">Every day</span><span class="wcard-title">The daily execution loop</span></div>
+    <div class="wcard-body">
+      <p style="font-size:13px; color:var(--color-text-secondary); margin:0 0 10px;">Use this loop every time you sit down with a new topic. It prevents "tutorial hell" — the trap of watching endlessly without retaining anything.</p>
+      <div class="loop-row"><div class="loop-pct">20%</div><div><div class="loop-title">Consume theory</div><div class="loop-desc">Watch the video or read the chapter. Don't take heavy notes — just grasp the concept.</div></div></div>
+      <div class="loop-row"><div class="loop-pct">30%</div><div><div class="loop-title">Replicate the example</div><div class="loop-desc">Follow the instructor exactly. Write the same SQL query. Draw the same market-sizing tree. Your hands must do the work.</div></div></div>
+      <div class="loop-row"><div class="loop-pct">40%</div><div><div class="loop-title">Blind application</div><div class="loop-desc">Close the tutorial. Open a fresh, unseen problem. Attempt it entirely from scratch. This is where real learning happens.</div></div></div>
+      <div class="loop-row"><div class="loop-pct">10%</div><div><div class="loop-title">Write the gap</div><div class="loop-desc">Note down the one specific thing you got wrong or got stuck on. Review that note before your next session.</div></div></div>
+    </div>
+  </div>
+
+  <button onclick="sendPrompt('Show me a sample guesstimate problem and how to solve it step by step')" style="margin-top:0.5rem; font-size:13px;">Practise a guesstimate ↗</button>
+  <button onclick="sendPrompt('Show me how to structure a product teardown for Swiggy')" style="margin-top:0.5rem; font-size:13px; margin-left:8px;">Product teardown walkthrough ↗</button>
+</div>
+<script>
+function show(n, btn) {
+  document.querySelectorAll('.wcard').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('.wn').forEach(el => el.classList.remove('active'));
+  document.getElementById('w' + n).classList.remove('hidden');
+  btn.classList.add('active');
+}
+</script>
