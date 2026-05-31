@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12-Week Placement Prep Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0f0f8;
+    --muted: #7a7a90;
+    --faint: #2a2a38;
+    --purple: #a78bfa;
+    --purple-dim: rgba(167,139,250,0.13);
+    --purple-deep: #534AB7;
+    --green: #00e5a0;
+    --green-dim: rgba(0,229,160,0.12);
+    --amber: #fbbf24;
+    --amber-dim: rgba(251,191,36,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 52px 24px 100px; position: relative; z-index: 1; }
+
+  /* Hero */
+  .hero { margin-bottom: 48px; }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; color: var(--purple);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--purple); }
+  .hero h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: 700; line-height: 1.15;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .hero h1 em { color: var(--purple); font-style: normal; }
+  .hero p { font-size: 14px; color: var(--muted); max-width: 520px; }
+
+  /* Progress bar */
+  .prog-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .prog-circle { position: relative; width: 60px; height: 60px; flex-shrink: 0; }
+  .prog-circle svg { transform: rotate(-90deg); }
+  .prog-circle .track { fill: none; stroke: var(--faint); stroke-width: 4; }
+  .prog-circle .fill { fill: none; stroke: var(--purple); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 150; stroke-dashoffset: 150; transition: stroke-dashoffset 0.5s ease; }
+  .prog-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; color: var(--purple); }
+  .prog-right { flex: 1; }
+  .prog-right .lbl { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-family: 'Space Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; }
+  .prog-bg { background: var(--faint); border-radius: 20px; height: 4px; overflow: hidden; }
+  .prog-fill { height: 4px; border-radius: 20px; background: linear-gradient(90deg, var(--purple), var(--green)); transition: width 0.5s ease; }
+  .prog-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .prog-sub span { color: var(--text); font-weight: 500; }
+
+  /* Phase nav */
+  .phase-nav { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .pn-btn {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border2);
+    background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s;
+  }
+  .pn-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+  .pn-btn.active { background: var(--purple-deep); color: #e8e4ff; border-color: var(--purple-deep); }
+  .pn-btn.p2active { background: #085041; color: #9FE1CB; border-color: #085041; }
+  .pn-btn.p3active { background: #633806; color: #FAC775; border-color: #633806; }
+  .pn-btn.dailyactive { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+  /* Week nav */
+  .week-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .wn {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .wn:hover { color: var(--text); border-color: var(--border2); }
+  .wn.active { background: var(--purple-deep); color: #e8e4ff; border-color: var(--purple-deep); font-weight: 700; }
+
+  /* Week card */
+  .wcard {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden; margin-bottom: 14px;
+  }
+  .wcard.hidden { display: none; }
+  .wcard-head {
+    padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-badge {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em;
+  }
+  .p1 { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .p2 { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,229,160,0.2); }
+  .p3 { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+  .pe { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
+  .wcard-title { font-size: 15px; font-weight: 500; color: var(--text); }
+
+  .wcard-body { padding: 6px 0; }
+  .step-row {
+    display: flex; gap: 14px;
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .step-row:last-of-type { border-bottom: none; }
+  .step-row:hover { background: var(--surface2); }
+  .step-row.done { opacity: 0.45; }
+
+  .cb {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 1px solid var(--faint);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    font-size: 11px; color: #000;
+    transition: all 0.15s; background: transparent;
+  }
+  .step-row.done .cb { background: var(--purple); border-color: var(--purple); }
+
+  .sc { flex: 1; }
+  .st { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; transition: color 0.15s; }
+  .step-row.done .st { text-decoration: line-through; color: var(--muted); }
+  .sd { font-size: 12px; color: var(--muted); line-height: 1.55; margin-bottom: 7px; }
+  .res-row { display: flex; flex-wrap: wrap; gap: 5px; }
+  .res-link {
+    font-size: 11px; padding: 3px 9px; border-radius: 20px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    border: 1px solid var(--border2); color: var(--muted);
+    background: transparent; transition: all 0.15s;
+  }
+  .res-link:hover { color: var(--text); border-color: rgba(255,255,255,0.25); background: var(--surface2); }
+  .res-icon { font-size: 11px; }
+
+  /* Daily loop */
+  .loop-wrap { padding: 6px 0; }
+  .loop-intro { font-size: 13px; color: var(--muted); padding: 12px 18px 4px; line-height: 1.6; }
+  .loop-row {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 14px 18px; border-top: 1px solid var(--border);
+  }
+  .loop-pct {
+    font-family: 'Space Mono', monospace; font-size: 13px;
+    font-weight: 700; color: var(--purple); min-width: 42px; padding-top: 1px;
+  }
+  .loop-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .loop-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  /* CTA buttons */
+  .cta-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; padding: 0 18px 16px; }
+  .cta-btn {
+    font-size: 12px; padding: 6px 14px; border-radius: 20px;
+    border: 1px solid var(--border2); background: transparent; color: var(--purple);
+    cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+  }
+  .cta-btn:hover { background: var(--purple-dim); border-color: rgba(167,139,250,0.3); }
+
+  /* Footer */
+  .footer { margin-top: 56px; text-align: center; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--faint); letter-spacing: 0.06em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-eyebrow">placement prep</div>
+    <h1><em>12-Week</em> Placement<br>Prep Guide</h1>
+    <p>Step-by-step roadmap covering technical skills, analytical thinking, portfolio building, and interview prep — track your progress as you go.</p>
+  </div>
+
+  <div class="prog-row">
+    <div class="prog-circle">
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <circle class="track" cx="30" cy="30" r="24"/>
+        <circle class="fill" id="prog-circle" cx="30" cy="30" r="24"/>
+      </svg>
+      <div class="prog-num" id="prog-pct">0%</div>
+    </div>
+    <div class="prog-right">
+      <div class="lbl">overall progress</div>
+      <div class="prog-bg"><div class="prog-fill" id="prog-bar" style="width:0%"></div></div>
+      <div class="prog-sub"><span id="prog-done">0</span> of <span id="prog-total">0</span> steps completed</div>
+    </div>
+  </div>
+
+  <div class="phase-nav">
+    <button class="pn-btn active" onclick="showPhase('p1',this)">Phase 1 — Technical</button>
+    <button class="pn-btn" onclick="showPhase('p2',this)">Phase 2 — Analytical</button>
+    <button class="pn-btn" onclick="showPhase('p3',this)">Phase 3 — Portfolio</button>
+    <button class="pn-btn" onclick="showPhase('daily',this)">Daily loop</button>
+  </div>
+
+  <div id="phase-p1">
+    <div class="week-nav" id="nav-p1"></div>
+    <div id="cards-p1"></div>
+  </div>
+  <div id="phase-p2" class="hidden">
+    <div class="week-nav" id="nav-p2"></div>
+    <div id="cards-p2"></div>
+  </div>
+  <div id="phase-p3" class="hidden">
+    <div class="week-nav" id="nav-p3"></div>
+    <div id="cards-p3"></div>
+  </div>
+  <div id="phase-daily" class="hidden">
+    <div class="wcard">
+      <div class="wcard-head"><span class="phase-badge pe">Every day</span><span class="wcard-title">The daily execution loop</span></div>
+      <div class="loop-wrap">
+        <p class="loop-intro">Use this loop every time you sit down with a new topic. It prevents "tutorial hell" — the trap of watching endlessly without retaining anything.</p>
+        <div class="loop-row"><div class="loop-pct">20%</div><div><div class="loop-title">Consume theory</div><div class="loop-desc">Watch the video or read the chapter. Don't take heavy notes — just grasp the concept.</div></div></div>
+        <div class="loop-row"><div class="loop-pct">30%</div><div><div class="loop-title">Replicate the example</div><div class="loop-desc">Follow the instructor exactly. Write the same SQL query. Draw the same market-sizing tree. Your hands must do the work.</div></div></div>
+        <div class="loop-row"><div class="loop-pct">40%</div><div><div class="loop-title">Blind application</div><div class="loop-desc">Close the tutorial. Open a fresh, unseen problem. Attempt it entirely from scratch. This is where real learning happens.</div></div></div>
+        <div class="loop-row"><div class="loop-pct">10%</div><div><div class="loop-title">Write the gap</div><div class="loop-desc">Note down the one specific thing you got wrong or got stuck on. Review that note before your next session.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>12-week placement prep &nbsp;·&nbsp; track your progress, own your prep</p>
+  </div>
+</div>
+
+<script>
+const data = {
+  p1: {
+    label: 'Phase 1 — Technical',
+    weeks: [
+      {
+        id:'w1', title:'Week 1 · Excel from zero', badge:'p1', badgeText:'Phase 1 — technical',
+        steps:[
+          { id:'w1s1', title:'Watch Chandoo\'s beginner playlist', desc:'Covers SUM, AVERAGE, IF, and formatting. Don\'t take notes — just follow along.', links:[{url:'https://www.youtube.com/@chandoo_',text:'Chandoo YouTube'},{url:'https://www.youtube.com/@AlexTheAnalyst',text:'Alex the Analyst'}] },
+          { id:'w1s2', title:'Download a sample dataset and replicate', desc:'Get any sales CSV from Kaggle. Build a Pivot Table, use VLOOKUP and INDEX-MATCH on real data.', links:[{url:'https://www.kaggle.com/datasets',text:'Kaggle datasets'}] },
+          { id:'w1s3', title:'Finish with Conditional Formatting + What-If', desc:'These appear frequently in DA and BA assessments. One tutorial each is enough.', links:[] }
+        ]
+      },
+      {
+        id:'w2', title:'Week 2 · SQL basics', badge:'p1', badgeText:'Phase 1 — technical',
+        steps:[
+          { id:'w2s1', title:'Complete SQLBolt in full', desc:'18 interactive lessons, runs in browser, no setup needed. Covers SELECT, WHERE, GROUP BY, ORDER BY. Do all 18.', links:[{url:'https://sqlbolt.com',text:'SQLBolt'},{url:'https://www.w3schools.com/sql/',text:'W3Schools SQL'}] },
+          { id:'w2s2', title:'Learn all JOIN types', desc:'INNER, LEFT, RIGHT, FULL OUTER — draw Venn diagrams on paper to remember the difference.', links:[] },
+          { id:'w2s3', title:'Practice on HackerRank SQL (Easy tier)', desc:'Solve the first 15 easy problems. Don\'t skip — this is the closest thing to actual placement tests.', links:[{url:'https://www.hackerrank.com/domains/sql',text:'HackerRank SQL'}] }
+        ]
+      },
+      {
+        id:'w3', title:'Week 3 · Python basics', badge:'p1', badgeText:'Phase 1 — technical',
+        steps:[
+          { id:'w3s1', title:'Python basics — variables to functions', desc:'Use freeCodeCamp\'s Python course on YouTube. Stop after the functions chapter — you don\'t need more at this stage.', links:[{url:'https://www.youtube.com/@freecodecamp',text:'freeCodeCamp'},{url:'https://www.learnpython.org',text:'learnpython.org'}] },
+          { id:'w3s2', title:'Pandas — load, clean, group a CSV', desc:'Install via Google Colab (free, no setup). Load a dataset, drop nulls, groupby, and sort. Do this with your own hands — don\'t just watch.', links:[{url:'https://colab.research.google.com',text:'Google Colab'}] },
+          { id:'w3s3', title:'Matplotlib — plot one chart', desc:'A bar chart and a line chart. That\'s it for now. You need to know what a chart looks like in code, not master every chart type.', links:[] }
+        ]
+      },
+      {
+        id:'w4', title:'Week 4 · Statistics foundations', badge:'p1', badgeText:'Phase 1 — technical',
+        steps:[
+          { id:'w4s1', title:'Mean, median, mode, std deviation', desc:'Don\'t memorise formulas — understand when to use each one. Watch StatQuest\'s "Statistics Fundamentals" playlist first 5 videos.', links:[{url:'https://www.youtube.com/@statquest',text:'StatQuest'}] },
+          { id:'w4s2', title:'Distributions + hypothesis testing concepts', desc:'Normal distribution, p-value, and A/B testing intuition. These appear in data analyst and product rounds. Concept-only, no math proofs.', links:[] },
+          { id:'w4s3', title:'Solve 5 SQL medium problems', desc:'By end of week 4 you should be able to handle medium-difficulty SQL. Do 5 HackerRank mediums — time yourself.', links:[{url:'https://www.hackerrank.com/domains/sql',text:'HackerRank SQL'}] }
+        ]
+      }
+    ]
+  },
+  p2: {
+    label: 'Phase 2 — Analytical',
+    weeks: [
+      {
+        id:'w5', title:'Week 5 · Case study frameworks', badge:'p2', badgeText:'Phase 2 — analytical',
+        steps:[
+          { id:'w5s1', title:'Learn the 3 core frameworks', desc:'Profitability (Revenue − Cost), Market Entry (TAM, competition, feasibility), and Product (user → pain point → metric → fix). These cover 80% of cases you\'ll face.', links:[{url:'https://www.youtube.com/@ConsultingCase101',text:'Consulting Case 101'}] },
+          { id:'w5s2', title:'Do 2 practice cases end-to-end', desc:'Use Case in Point (free PDF) or Victor Cheng\'s free cases. Speak out loud — don\'t just think through it in your head.', links:[{url:'https://www.caseinterview.com',text:'caseinterview.com'}] },
+          { id:'w5s3', title:'Build your "issue tree" habit', desc:'For every case, draw a tree breaking down the problem before speaking. Interviewers reward structure over speed.', links:[] }
+        ]
+      },
+      {
+        id:'w6', title:'Week 6 · Guesstimates', badge:'p2', badgeText:'Phase 2 — analytical',
+        steps:[
+          { id:'w6s1', title:'Learn the segmentation method', desc:'Every guesstimate = population segment × penetration × frequency × value. Practice applying this formula to 5 different prompts.', links:[] },
+          { id:'w6s2', title:'Memorise 10 anchor numbers', desc:'India population (1.4B), smartphone users (~700M), monthly income brackets, avg household size. These make your estimates credible.', links:[] },
+          { id:'w6s3', title:'Do 5 guesstimates out loud with a timer', desc:'Give yourself 3 minutes max per guesstimate. Use a friend or record yourself. Clarity of logic matters more than the exact number.', links:[] }
+        ]
+      },
+      {
+        id:'w7', title:'Week 7 · Product thinking', badge:'p2', badgeText:'Phase 2 — analytical',
+        steps:[
+          { id:'w7s1', title:'Study 3 product teardowns on YouTube', desc:'Search "product teardown Swiggy" or "product teardown Zepto". Understand how analysts frame user problems and metrics.', links:[{url:'https://www.youtube.com',text:'YouTube search'}] },
+          { id:'w7s2', title:'Learn North Star metric + guardrail metrics', desc:'Every product has one primary metric and 2-3 metrics that must not drop. Practice naming these for 5 apps you use.', links:[] },
+          { id:'w7s3', title:'Read Shreyas Doshi\'s framework posts', desc:'His posts on "LNO framework" and "What separates good PMs from great PMs" are excellent. 1 hour of reading, high ROI.', links:[{url:'https://twitter.com/shreyas',text:'Shreyas Doshi'}] }
+        ]
+      },
+      {
+        id:'w8', title:'Week 8 · Data visualisation', badge:'p2', badgeText:'Phase 2 — analytical',
+        steps:[
+          { id:'w8s1', title:'Choose Power BI (recommended over Tableau)', desc:'More commonly asked in Indian placements. Follow Alex the Analyst\'s Power BI beginner bootcamp on YouTube — it\'s free and very hands-on.', links:[{url:'https://www.youtube.com/@AlexTheAnalyst',text:'Alex the Analyst — Power BI'}] },
+          { id:'w8s2', title:'Learn DAX basics + data modeling', desc:'Calculated columns, measures, relationships between tables. These 3 things cover 80% of what you\'ll need in an assessment.', links:[] },
+          { id:'w8s3', title:'Build one guided dashboard end-to-end', desc:'Follow a YouTube tutorial for a Sales or HR dashboard. By end of week you should have a publishable file for your resume.', links:[] }
+        ]
+      }
+    ]
+  },
+  p3: {
+    label: 'Phase 3 — Portfolio',
+    weeks: [
+      {
+        id:'w9', title:'Week 9 · Capstone project', badge:'p3', badgeText:'Phase 3 — portfolio',
+        steps:[
+          { id:'w9s1', title:'Pick a messy Kaggle dataset', desc:'Something real: e-commerce orders, IPL match data, hospital data. The messier it is, the better it demonstrates your cleaning skills.', links:[{url:'https://www.kaggle.com/datasets',text:'Kaggle datasets'}] },
+          { id:'w9s2', title:'Clean + analyse with Python and SQL', desc:'Use Pandas to clean, write SQL queries to answer 3 specific business questions you define upfront. Document everything in a Jupyter Notebook.', links:[] },
+          { id:'w9s3', title:'Build a Power BI dashboard on top of it', desc:'This single end-to-end project covers Python + SQL + visualisation — and becomes your strongest resume bullet point.', links:[] }
+        ]
+      },
+      {
+        id:'w10', title:'Week 10 · Product teardown deck', badge:'p3', badgeText:'Phase 3 — portfolio',
+        steps:[
+          { id:'w10s1', title:'Pick one app you use heavily', desc:'Swiggy, CRED, Zepto, PhonePe — something you genuinely understand as a user. Avoid copying existing teardowns.', links:[] },
+          { id:'w10s2', title:'Structure: user journey → pain points → metrics → fix', desc:'A 5-7 slide deck is ideal. Cover: who the user is, what their goal is, where they drop off, what metric is affected, what your proposed change is.', links:[] },
+          { id:'w10s3', title:'Add to your resume and LinkedIn', desc:'Upload to Notion or Canva and share the link on LinkedIn. Interviewers genuinely check this before PA/PM rounds.', links:[] }
+        ]
+      },
+      {
+        id:'w11', title:'Week 11 · Mock interview blitz', badge:'p3', badgeText:'Phase 3 — portfolio',
+        steps:[
+          { id:'w11s1', title:'Daily mock with a friend — 45 min sessions', desc:'One person is interviewer, one is candidate. Rotate. Cover 1 guesstimate + 1 case study per session. Use a timer — 20 min per case.', links:[] },
+          { id:'w11s2', title:'Watch your weakest case type 3x more', desc:'If market entry cases feel shaky, do 3 market entry cases before moving on. Don\'t spread time equally — fix the gaps.', links:[] },
+          { id:'w11s3', title:'Record at least 2 sessions', desc:'Play them back and note filler words, pacing, and whether your structure was actually clear to someone who doesn\'t know the topic.', links:[] }
+        ]
+      },
+      {
+        id:'w12', title:'Week 12 · Resume + HR prep', badge:'p3', badgeText:'Phase 3 — portfolio',
+        steps:[
+          { id:'w12s1', title:'Rewrite resume with STAR bullets', desc:'Every experience bullet should follow Situation → Task → Action → Result. Quantify wherever possible. Your capstone project gets its own bullet with metrics.', links:[] },
+          { id:'w12s2', title:'Prepare 5 core HR answers', desc:'Tell me about yourself / Why this role? / A time you solved a problem with data / Your biggest weakness / Where do you see yourself in 3 years.', links:[] },
+          { id:'w12s3', title:'Re-read every case and guesstimate you got wrong', desc:'The day before any interview, re-read your "mistakes notebook" — not new material. Revising errors is more valuable than learning new content at this stage.', links:[] }
+        ]
+      }
+    ]
+  }
+};
+
+const saved = JSON.parse(localStorage.getItem('placement_prep_v1') || '{}');
+let totalSteps = 0;
+let allStepIds = [];
+
+function buildPhase(phaseKey) {
+  const phase = data[phaseKey];
+  const navEl = document.getElementById('nav-' + phaseKey);
+  const cardsEl = document.getElementById('cards-' + phaseKey);
+
+  phase.weeks.forEach((week, wi) => {
+    totalSteps += week.steps.length;
+    week.steps.forEach(s => allStepIds.push(s.id));
+
+    const btn = document.createElement('button');
+    btn.className = 'wn' + (wi === 0 ? ' active' : '');
+    btn.textContent = 'Wk ' + (week.id.replace('w',''));
+    btn.setAttribute('data-week', week.id);
+    btn.setAttribute('data-phase', phaseKey);
+    btn.onclick = () => showWeek(phaseKey, week.id, btn);
+    navEl.appendChild(btn);
+
+    const card = document.createElement('div');
+    card.className = 'wcard' + (wi !== 0 ? ' hidden' : '');
+    card.id = 'card-' + week.id;
+
+    let stepsHTML = '';
+    week.steps.forEach(step => {
+      const done = saved[step.id] ? ' done' : '';
+      const checked = saved[step.id] ? '✓' : '';
+      const cbStyle = saved[step.id] ? 'background:var(--purple);border-color:var(--purple);' : '';
+      const lineThrough = saved[step.id] ? 'text-decoration:line-through;color:var(--muted);' : '';
+      const linksHTML = step.links.map(l =>
+        `<a class="res-link" href="${l.url}" target="_blank"><span class="res-icon">↗</span>${l.text}</a>`
+      ).join('');
+      stepsHTML += `
+        <div class="step-row${done}" data-id="${step.id}" onclick="toggleStep(this,'${step.id}')">
+          <div class="cb" style="${cbStyle}">${checked}</div>
+          <div class="sc">
+            <div class="st" style="${lineThrough}">${step.title}</div>
+            <div class="sd">${step.desc}</div>
+            ${step.links.length ? `<div class="res-row">${linksHTML}</div>` : ''}
+          </div>
+        </div>`;
+    });
+
+    card.innerHTML = `
+      <div class="wcard-head">
+        <span class="phase-badge ${week.badge}">${week.badgeText}</span>
+        <span class="wcard-title">${week.title}</span>
+      </div>
+      <div class="wcard-body">${stepsHTML}</div>`;
+
+    cardsEl.appendChild(card);
+  });
+}
+
+['p1','p2','p3'].forEach(buildPhase);
+document.getElementById('prog-total').textContent = totalSteps;
+
+function showWeek(phaseKey, weekId, btn) {
+  document.querySelectorAll('#cards-' + phaseKey + ' .wcard').forEach(c => c.classList.add('hidden'));
+  document.getElementById('card-' + weekId).classList.remove('hidden');
+  document.querySelectorAll('#nav-' + phaseKey + ' .wn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function showPhase(phaseKey, btn) {
+  ['p1','p2','p3','daily'].forEach(p => {
+    const el = document.getElementById('phase-' + p);
+    if (el) el.classList.add('hidden');
+  });
+  document.getElementById('phase-' + phaseKey).classList.remove('hidden');
+  document.querySelectorAll('.pn-btn').forEach(b => b.classList.remove('active','p2active','p3active','dailyactive'));
+  const cls = phaseKey === 'p2' ? 'p2active' : phaseKey === 'p3' ? 'p3active' : phaseKey === 'daily' ? 'dailyactive' : 'active';
+  btn.classList.add(cls);
+}
+
+function toggleStep(row, id) {
+  if (event.target.tagName === 'A') return;
+  const done = row.classList.toggle('done');
+  const cb = row.querySelector('.cb');
+  const title = row.querySelector('.st');
+  if (done) {
+    cb.textContent = '✓'; cb.style.background = 'var(--purple)'; cb.style.borderColor = 'var(--purple)';
+    title.style.textDecoration = 'line-through'; title.style.color = 'var(--muted)';
+  } else {
+    cb.textContent = ''; cb.style.background = ''; cb.style.borderColor = '';
+    title.style.textDecoration = ''; title.style.color = '';
+  }
+  saved[id] = done;
+  localStorage.setItem('placement_prep_v1', JSON.stringify(saved));
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = allStepIds.filter(id => saved[id]).length;
+  const pct = totalSteps > 0 ? Math.round((done / totalSteps) * 100) : 0;
+  document.getElementById('prog-done').textContent = done;
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-bar').style.width = pct + '%';
+  const c = 150;
+  document.getElementById('prog-circle').style.strokeDashoffset = c - (pct / 100) * c;
+}
+
+updateProgress();
+</script>
+</body>
+</html>
